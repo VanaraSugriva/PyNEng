@@ -1,11 +1,11 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
+'''
 Задание 7.3a
 
 Сделать копию скрипта задания 7.3.
 
-Переделать скрипт:  Отсортировать вывод по номеру VLAN
+Дополнить скрипт:
+- Отсортировать вывод по номеру VLAN
 
 В результате должен получиться такой вывод:
 10       01ab.c5d0.70d0      Gi0/8
@@ -18,20 +18,16 @@
 500      02b1.3c80.7b00      Gi0/5
 1000     0a4b.c380.7d00      Gi0/9
 
-Обратите внимание на vlan 1000 - он должен выводиться последним.
-Правильной сортировки можно добиться, если vlan будет числом, а не строкой.
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-"""
-mac_table = []
-with open('CAM_table.txt') as i_f, open('result.txt', 'w') as o_f:
-    for line in i_f:
+'''
+table=[]
+with open("CAM_table.txt") as f:
+    for line in f:
         line = line.split()
         if line and line[0].isdigit():
-            vlan, mac, _, intf = line
-            mac_table.append([int(vlan), mac, intf])
-for vlan, mac, intf in sorted(mac_table):
-    print(f'{vlan:<12} {mac:24} {intf:12}')
-
-
+            vlan, mac, _, port = line
+            table.append([int(vlan), mac, port])
+for vlan, mac, port in sorted(table):
+    print(f'{vlan:<8} {mac:20} {port}')

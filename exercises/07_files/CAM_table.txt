@@ -1,5 +1,5 @@
 sw1#sh mac address-table 
-print(out.format(list[0], list[1], list[3]))          Mac Address Table
+          Mac Address Table
 -------------------------------------------
 
 Vlan    Mac Address       Type        Ports
